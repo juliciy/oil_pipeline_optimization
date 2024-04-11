@@ -1,0 +1,39 @@
+oil_pipeline_optimization/
+│
+├── datasets/
+│   ├── historical_data/
+│   │   ├── pump_data/
+│   │   └── electricity_rates/
+│   ├── current_data/
+│   │   ├── pump_status/
+│   │   └── current_rates/
+│   └── external_data/
+│
+├── models/
+│   ├── cost_prediction/
+│   └── optimization/
+│
+├── src/
+│   ├── data_processing/
+│   │   ├── cleaner.py
+│   │   └── transformer.py
+│   │
+│   ├── analysis/
+│   │   ├── exploratory_analysis.py
+│   │   └── trend_analysis.py
+│   │
+│   ├── optimization/
+│   │   ├── pump_optimizer.py
+│   │   └── cost_calculator.py
+│   │
+│   └── main.py
+│
+├── database/
+│   ├── db_schema.sql
+│   └── crud_operations.py
+│
+├── notebooks/
+├── docs/
+├── tests/
+├── requirements.txt
+└── README.md

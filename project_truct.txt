@@ -1,0 +1,39 @@
+oil_pipeline_optimization/
+│
+├── datasets/
+│   ├── historical_data/             # 存放历史运行数据的目录
+│   │   ├── pump_data/               # 泵的历史数据
+│   │   └── electricity_rates/       # 历史电价数据
+│   ├── current_data/                # 存放当前运行数据的目录
+│   │   ├── pump_status/             # 当前泵状态数据
+│   │   └── current_rates/           # 当前电价数据
+│   └── external_data/               # 存放外部数据（如天气、市场趋势等）
+│
+├── models/
+│   ├── cost_prediction/             # 成本预测模型目录
+│   └── optimization/                # 优化算法模型目录
+│
+├── src/
+│   ├── data_processing/
+│   │   ├── cleaner.py               # 数据清洗脚本
+│   │   └── transformer.py           # 数据转换脚本
+│   │
+│   ├── analysis/
+│   │   ├── exploratory_analysis.py  # 探索性数据分析脚本
+│   │   └── trend_analysis.py        # 趋势分析脚本
+│   │
+│   ├── optimization/
+│   │   ├── pump_optimizer.py        # 泵优化脚本
+│   │   └── cost_calculator.py       # 成本计算脚本
+│   │
+│   └── main.py                      # 主程序入口
+│
+├── database/
+│   ├── db_schema.sql                # 数据库架构定义文件
+│   └── crud_operations.py           # 数据库CRUD操作脚本
+│
+├── notebooks/                       # Jupyter笔记本目录
+├── docs/                            # 项目文档目录
+├── tests/                           # 测试代码目录
+├── requirements.txt                 # 项目依赖列表
+└── README.md                        # 项目README文件
