@@ -958,7 +958,7 @@ circulate_result = pd.DataFrame({
                                  'obj_values':[]
                                  })
 
-# 获取当前流量，依据当前流量进行寻优计算
+# 获取初始流量，依据当前流量进行寻优计算
 original_flow = get_config_flow().iloc[0, 0]
 
 # 为什么要循环三次啊？

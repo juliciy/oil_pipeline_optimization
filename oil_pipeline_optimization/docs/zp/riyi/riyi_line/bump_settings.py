@@ -53,9 +53,10 @@ def get_max_num_bumps():
 #每个站开启泵的数量
 def get_started_num_bumps(threshold=0.3):
     """
-    查询输油泵表格
-    :param threshold:
-    :return:
+    包括当前日仪线各个站(不包括终点站)的泵的开启状况
+    :sql语句: 查询各站输油泵的压力和变频器的频率
+    :param threshold: 判断是否开启的阈值
+    :return:返回一个字典，比如{0:1, 1:3, 2:2, 4:0}
     """
     conn = get_conn()
 
@@ -66,6 +67,7 @@ def get_started_num_bumps(threshold=0.3):
     where  a.type =2 order by   a.station_id,a.sort
     """
     # print('get_started_num_bumps',sql)
+    # 记录每个站开启泵的数量
     result = {}
 
     with conn.cursor() as cursor:
@@ -73,7 +75,7 @@ def get_started_num_bumps(threshold=0.3):
         data = cursor.fetchall()
 
         df = pd.DataFrame(list(data)).T
-
+        # 提取的泵数据：每个站含有6个工频泵，2个变频器
         bump_data = df[1:2]
         bump_data.columns = list(df.loc['station_name'])
         bump_data.index = [0]
@@ -81,7 +83,7 @@ def get_started_num_bumps(threshold=0.3):
         #bump_data = pd.read_csv('输油泵数据.csv',header=0)
         #print(bump_data)
 
-        # 工频泵数据
+        # 工频泵数据，
         num_bumps = 6
         start_pos = 0
 

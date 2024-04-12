@@ -239,7 +239,8 @@ def predict_var_frequency_bump_pressure_v3(flow,freq,in_pressure,index):
 def regularize(flow_capacity):
     """
     获取每个站的负反馈调节系数和初始压力
-    :param flow_capacity: 流量容量
+    :sql语句: 查询各站输油泵的压力和变频器的频率
+    :param threshold:
     :return:
     """
     conn = get_conn()
@@ -268,10 +269,12 @@ def regularize(flow_capacity):
     #bump_data = pd.read_csv('输油泵数据.csv',header=0)
     #print(bump_data)
 
-    #每个站点的工频泵数量
+    # 每个站点的工频泵数量
     num_fixed_freq_bumps = 6
+    # 每个站有16条泵和变频器信息
     columns = 6*2+2
 
+    # 根据泵的数据、初始容量、泵的数量计算初始压力
     ri_zhao_reg,init_pressure = calc_reg(bump_data, flow_capacity, 0, num_fixed_freq_bumps)
     dong_hai_reg,_ = calc_reg(bump_data, flow_capacity, columns, num_fixed_freq_bumps)
     huai_an_reg,_ = calc_reg(bump_data, flow_capacity,  columns*2, num_fixed_freq_bumps)
