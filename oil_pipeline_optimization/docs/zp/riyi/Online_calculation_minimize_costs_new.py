@@ -951,7 +951,7 @@ def cal_process(flow):
 
     return flow,obj_values,choice,elec_price,solution.solver.termination_condition
 
-
+#主函数的入口，没有写规范，应该有一个if __name__ = __"main"__:
 # 流量上下变化5%，输出结果。共运行11次进行比较。
 circulate_result = pd.DataFrame({
                                  'flow':[],
@@ -966,6 +966,8 @@ for result_i in range(3):
     flow = original_flow * (1 + (result_i - 5) / 100)
     # print('haha',flow)
 
+    #为什么不把obj_values, choice, elec_price, reult_condition 这四个值存入一个字典？？然后下面cal_process(flow)就不用再次调用了 会提高效率！！
+
     # 对当前流量寻优计算？以日仪线途径四站为例
     flow, obj_values, choice, elec_price, reult_condition = cal_process(flow)
     data_dict = {
@@ -977,8 +979,11 @@ for result_i in range(3):
 # 找到最优能耗，对应流量
 circulate_result_min = circulate_result[circulate_result['obj_values']==circulate_result['obj_values'].min()]
 flow = circulate_result_min.iloc[0,0]
+
 flow, obj_values, choice, elec_price, reult_condition = cal_process(flow)
 
+
+#代码冗余严重，， write_optimize_model_result_to_mysql函数与write_failed_result_to_mysql完全没有分成两个函数书写。
 
 if (reult_condition == TerminationCondition.optimal):
     print("optimize success")
